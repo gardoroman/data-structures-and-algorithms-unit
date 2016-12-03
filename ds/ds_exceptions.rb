@@ -1,0 +1,1 @@
+class OutOfBoundsException < StandardError; end

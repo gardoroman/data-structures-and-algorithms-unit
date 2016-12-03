@@ -3,9 +3,15 @@ require_relative 'fixed_array'
 describe FixedArray do
   let(:fixed_array) {FixedArray.new(5)}
 
-  describe "#size" do
+  describe "#new" do
+    it "creates a new FixedArray object" do
+      expect(fixed_array.class).to eq(FixedArray)
+    end
+  end
+
+  describe "#length" do
     it "returns the length of the array" do
-      expect(fixed_array.size).to eq(5)
+      expect(fixed_array.length).to eq(5)
     end
   end
 
@@ -23,20 +29,18 @@ describe FixedArray do
   end
 
   describe "OutOfBoundsException" do
-    it "raises and error when set index value exceeds size" do
-      expect { fixed_array.set(6, "x")}.to raise_exception(OutOfBoundsException)
+    it "raises error when index exceeds size" do
+      expect { fixed_array.set(6, "too big")}.to raise_exception(OutOfBoundsException)
     end
-  end
 
-  describe "OutOfBoundsException" do
-    it "raises and error when set index value exceeds size" do
+    it "raises error retrieving a non-existing index" do
       expect { fixed_array.get(10)}.to raise_exception(OutOfBoundsException)
     end
-  end
 
-  describe "OutOfBoundsException" do
-    it "raises and error when setting a value less than Zero" do
+    it "raises error when index less than Zero" do
       expect { fixed_array.get(-3)}.to raise_exception(OutOfBoundsException)
     end
+
   end
+
 end

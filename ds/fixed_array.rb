@@ -1,4 +1,4 @@
-class OutOfBoundsException < StandardError; end
+require_relative 'ds_exceptions'
 
 class FixedArray
 
@@ -9,7 +9,7 @@ class FixedArray
   end
 
   # returns the length of the array
-  def size
+  def length
     array.length
   end
 
@@ -23,10 +23,10 @@ class FixedArray
   # sets value at given index.
   # Will raise OutOfBoundsException if index values
   # greater than array size
-  def set(index, value)
+  def set(index, element)
     index = index.to_i
     raise OutOfBoundsException unless valid_index?(index)
-    array[index] = value
+    @array[index] = element
   end
 
   private
@@ -34,7 +34,7 @@ class FixedArray
   # returns true if index is greater than Zero
   # or index is within the size limit of the array
   def valid_index?(index)
-    index >= 0 && index < self.size
+    index >= 0 && index < self.length
   end
 
 end
