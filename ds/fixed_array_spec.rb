@@ -9,9 +9,9 @@ describe FixedArray do
     end
   end
 
-  describe "#size" do
+  describe "#length" do
     it "returns the length of the array" do
-      expect(fixed_array.size).to eq(5)
+      expect(fixed_array.length).to eq(5)
     end
   end
 
