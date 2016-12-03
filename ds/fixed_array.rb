@@ -23,10 +23,10 @@ class FixedArray
   # sets value at given index.
   # Will raise OutOfBoundsException if index values
   # greater than array size
-  def set(index, value)
+  def set(index, element)
     index = index.to_i
     raise OutOfBoundsException unless valid_index?(index)
-    @array[index] = value
+    @array[index] = element
   end
 
   private
