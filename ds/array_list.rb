@@ -40,19 +40,18 @@ class ArrayList
   def insert(index, element)
     raise OutOfBoundsException unless valid_index?(index)
 
-    head_list = slice(0, index)
-    tail_list = slice(index, length - index)
-    @array_list = FixedArray.new(0)
-
-    head_list.length.times do |index|
-      add(head_list.get(index))
+    temp_list = array_list
+    @array_list = FixedArray.new(length + 1)
+    (index -1).times do |below_index|
+      array_list.set(below_index, temp_list.get(below_index))
     end
 
-    add(element)
+    array_list.set(index,element)
 
-    tail_list.length.times do |index|
-      add(tail_list.get(index))
+    (index + 1).upto(length - 1) do |above_index|
+      @array_list.set(above_index, temp_list.get(index))
     end
+
     element
   end
 
@@ -64,7 +63,7 @@ class ArrayList
     index >= 0 && index < self.length
   end
 
-  # copies "num" elements of an ArrayList
+    # copies "num" elements of an ArrayList
   # at index indicated by "start"
   def slice(start, num)
     temp_list = FixedArray.new(num)
@@ -76,7 +75,5 @@ class ArrayList
     temp_list
   end
 
-  def merge_lists(arr_list)
-  end
 
 end
