@@ -8,16 +8,17 @@ class LinkedList
     @length = 0
   end
 
-  def add(node)
+  def add(element)
+    # element = Node.new(element)
     if self.length == 0
-      @first = node
-      @last = node
+      @first =element
+      @last =element
     else
-      @last.next_node = node
-      @last = node
+      @last.next_node =element
+      @last =element
     end
     self.length += 1
-    node
+    element
   end
 
   def first
@@ -31,34 +32,54 @@ class LinkedList
   end
 
   def get(position)
+    raise OutOfBoundsException unless valid_range?(position)
     return nil unless self.length > 0
-    node = iterate(position)
-    if node
-      return node
+    element = iterate(position)
+    if element
+      return element
     else
       raise ElementNotFound
     end
   end
 
   def set(position, element)
-    position = validate_position(position)
-    previous_node = get(position - 1)
-    current_node = previous_node.next_node
-    after_node = current_node.next_node
-    element.next_node = after_node
-    previous_node.next_node = element
+    # element = Node.new(element)
+    raise OutOfBoundsException unless valid_range?(position)
+    if position == 0
+      element.next_node = self.first.next_node
+      @first = element
+    else
+      position = validate_position(position)
+      previous_node = get(position - 1)
+      current_node = previous_node.next_node
+      after_node = current_node.next_node
+      element.next_node = after_node
+      previous_node.next_node = element
+      @last = element if element.next_node == nil
+    end
+    element
   end
 
   def insert(position, element)
-    position = validate_position(position)
-    previous_node = get(position - 1)
-    current_node = previous_node.next_node
-    after_node = current_node
-    element.next_node = after_node
-    previous_node.next_node = element
+    # element = Node.new(element)
+    raise OutOfBoundsException unless valid_range?(position)
+    if position == 0
+      element.next_node = self.first
+      @first = element
+    else
+      position = validate_position(position)
+      previous_node = get(position - 1)
+      current_node = previous_node.next_node
+      after_node = current_node
+      element.next_node = after_node
+      previous_node.next_node = element
+      @last = element if element.next_node == nil
+    end
+    self.length += 1
+    element
   end
 
-  private
+  # private
 
   def iterate(position)
     raise OutOfBoundsException unless valid_range?(position)
@@ -80,22 +101,9 @@ class LinkedList
     if position < 0
       raise OutOfBoundsException
     elif position == 0
-      return 1
+      return position += 1
     else
       return position
     end
   end
 end
-
-#runner code
-
-first_node = Node.new('First')
-middle_node = Node.new('Middle')
-last_node = Node.new('Last')
-ll = LinkedList.new
-ll.add(first_node)
-ll.add(middle_node)
-
-ll.add(last_node)
-
-# ll.each { |i| puts i.element}
