@@ -41,16 +41,27 @@ class LinkedList
   end
 
   def set(position, element)
+    position = validate_position(position)
     previous_node = get(position - 1)
     current_node = previous_node.next_node
     after_node = current_node.next_node
-    
+    element.next_node = after_node
+    previous_node.next_node = element
+  end
+
+  def insert(position, element)
+    position = validate_position(position)
+    previous_node = get(position - 1)
+    current_node = previous_node.next_node
+    after_node = current_node
+    element.next_node = after_node
+    previous_node.next_node = element
   end
 
   private
 
   def iterate(position)
-    raise OutOfBoundsException unless valid_position?(position)
+    raise OutOfBoundsException unless valid_range?(position)
     current_node = self.first
     index = 0
     while index < position
@@ -61,10 +72,19 @@ class LinkedList
     current_node
   end
 
-  def valid_position?(index)
+  def valid_range?(index)
     index >= 0 && index < self.length
   end
 
+  def validate_position(position)
+    if position < 0
+      raise OutOfBoundsException
+    elif position == 0
+      return 1
+    else
+      return position
+    end
+  end
 end
 
 #runner code
