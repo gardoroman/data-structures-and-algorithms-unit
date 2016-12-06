@@ -1,4 +1,4 @@
-require_relative 'array_list'
+require_relative '../array_list'
 
 describe ArrayList do
   let(:array_list) {ArrayList.new(5)}
