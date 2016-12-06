@@ -10,19 +10,19 @@ describe FixedArray do
   end
 
   describe "#length" do
-    it "returns the length of the array" do
+    it "returns length of array" do
       expect(fixed_array.length).to eq(5)
     end
   end
 
   describe "#set" do
-    it "sets a value at the specified index" do
+    it "sets a value at specified index" do
       expect(fixed_array.set(0,1)).to eq(1)
     end
   end
 
   describe "#get" do
-    it "returns the value of element at specified index" do
+    it "returns value of element at specified index" do
       fixed_array.set(0,1)
       expect(fixed_array.get(0)).to eq(1)
     end
