@@ -7,20 +7,9 @@ class Node
     @next_node = next_node
   end
 
+  
+
+  def to_s
+    element
+  end
 end
-
-
-
-# LinkedList#new():
-# LinkedList#get_first():
-# LinkedList#remove_first():
-# LinkedList#insert_first():
-#
-# LinkedList#get_last():
-# LinkedList#remove_last():
-# LinkedList#insert_last(): (see add)
-# LinkedList#add(element):
-# LinkedList#get(position):
-# LinkedList#set(position, element):
-# LinkedList#insert(position, element);
-# LinkedList#length():
