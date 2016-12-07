@@ -46,8 +46,12 @@ class LinkedList
     # element = Node.new(element)
     raise OutOfBoundsException unless valid_range?(position)
     if position == 0
-      element.next_node = self.first.next_node
-      @first = element
+      if self.length == 0
+        add(element)
+      else
+        element.next_node = self.first.next_node
+        @first = element
+      end
     else
       position = validate_position(position)
       previous_node = get(position - 1)
@@ -64,8 +68,12 @@ class LinkedList
     # element = Node.new(element)
     raise OutOfBoundsException unless valid_range?(position)
     if position == 0
-      element.next_node = self.first
-      @first = element
+      if self.length == 0
+        add(element)
+      else
+        element.next_node = self.first
+        @first = element
+      end
     else
       position = validate_position(position)
       previous_node = get(position - 1)
@@ -94,6 +102,7 @@ class LinkedList
   end
 
   def valid_range?(index)
+    return true if index == 0
     index >= 0 && index < self.length
   end
 
