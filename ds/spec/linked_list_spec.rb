@@ -30,7 +30,8 @@ describe LinkedList do
     end
 
     it "adds next element to end of list" do
-      expect(linked_list.add(middle_node)).to eq(linked_list.get())
+      linked_list.add(first_node)
+      expect(linked_list.add(middle_node)).to eq(linked_list.get(linked_list.length - 1))
     end
 
     it "increases size of ArrayList" do
