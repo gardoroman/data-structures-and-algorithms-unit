@@ -30,3 +30,5 @@ puts ll.length
 
 nl = LinkedList.new
 # puts nl.first
+nl.set(0,first_node)
+nl.insert(0,middle_node)
