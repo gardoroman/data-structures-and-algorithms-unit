@@ -55,6 +55,27 @@ class ArrayList
     element
   end
 
+  def to_s
+    str = "["
+    each do |element|
+      if element.class == Fixnum
+        str << element.to_s
+      else
+        str << "'#{element}'"
+      end
+      str << ","
+    end
+    str = str[0..str.length-2] + "]"
+  end
+
+  def each
+    index = 0
+    while index < self.length
+      yield (get(index))
+      index += 1
+    end
+  end
+
   private
 
   # returns true if index is greater than Zero

@@ -16,9 +16,14 @@ class Stack
   end
 
   def pop
+    return nil if empty?
     popped_element = linked_list.first
-    @linked_list.first = popped_element.next_node
-    popped_element.to_s
+    if popped_element
+      @linked_list.first = popped_element.next_node
+      return popped_element.to_s
+    else
+      return nil
+    end
   end
 
   def top
