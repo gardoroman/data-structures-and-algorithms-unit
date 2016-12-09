@@ -8,3 +8,7 @@ c = stack.push("c")
 
 puts stack.pop
 puts stack.pop
+
+estack = Stack.new
+
+p estack.pop
