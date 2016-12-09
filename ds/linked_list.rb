@@ -9,16 +9,16 @@ class LinkedList
   end
 
   def add(element)
-    # element = Node.new(element)
+    node = Node.new(element)
     if self.length == 0
-      @first =element
-      @last =element
+      @first = node
+      @last = node
     else
-      @last.next_node =element
-      @last =element
+      @last.next_node = node
+      @last = node
     end
     self.length += 1
-    element
+    node.element
   end
 
   def first
@@ -32,18 +32,11 @@ class LinkedList
   end
 
   def get(position)
-    raise OutOfBoundsException unless valid_range?(position)
-    return nil unless self.length > 0
-    element = iterate(position)
-    if element
-      return element
-    else
-      raise ElementNotFound
-    end
+    get_internal_node(position).element
   end
 
   def set(position, element)
-    # element = Node.new(element)
+    element = Node.new(element)
     raise OutOfBoundsException unless valid_range?(position)
     if position == 0
       if self.length == 0
@@ -54,18 +47,18 @@ class LinkedList
       end
     else
       position = validate_position(position)
-      previous_node = get(position - 1)
+      previous_node = get_internal_node(position - 1)
       current_node = previous_node.next_node
       after_node = current_node.next_node
       element.next_node = after_node
       previous_node.next_node = element
       @last = element if element.next_node == nil
     end
-    element
+    element.element
   end
 
   def insert(position, element)
-    # element = Node.new(element)
+    element = Node.new(element)
     raise OutOfBoundsException unless valid_range?(position)
     if position == 0
       if self.length == 0
@@ -76,7 +69,7 @@ class LinkedList
       end
     else
       position = validate_position(position)
-      previous_node = get(position - 1)
+      previous_node = get_internal_node(position - 1)
       current_node = previous_node.next_node
       after_node = current_node
       element.next_node = after_node
@@ -84,14 +77,25 @@ class LinkedList
       @last = element if element.next_node == nil
     end
     self.length += 1
-    element
+    element.element
   end
 
-  # private
+  private
+
+  def get_internal_node(position)
+    raise OutOfBoundsException unless valid_range?(position)
+    return nil unless self.length > 0
+    element = iterate(position)
+    if element
+      return element
+    else
+      raise ElementNotFound
+    end
+  end
 
   def iterate(position)
     raise OutOfBoundsException unless valid_range?(position)
-    current_node = self.first
+    current_node = first
     index = 0
     while index < position
       # yield (current_node)

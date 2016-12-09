@@ -2,21 +2,15 @@ require_relative '../linked_list'
 
 describe LinkedList do
   let(:linked_list) {LinkedList.new}
-  let(:first_node) {Node.new("First")}
-  let(:middle_node) {Node.new("Middle")}
-  let(:last_node) {Node.new("Last")}
+  let(:first_node) {"First"}
+  let(:middle_node) {"Middle"}
+  let(:last_node) {"Last"}
 
   describe "#new" do
     it "creates a new LinkedList" do
       expect(linked_list.class).to eq(LinkedList)
     end
   end # end of new
-
-  describe "#length" do
-    it "returns the length of LinkedList" do
-
-    end
-  end # end of length
 
   describe "#add" do
 
@@ -45,27 +39,27 @@ describe LinkedList do
       end
 
       it "makes first property equal to only node" do
-        expect(linked_list.first).to eq(@head_node)
+        expect(linked_list.first.element).to eq(@head_node)
       end
 
       it "makes only node equal to last node" do
-        expect(linked_list.last).to eq(@head_node)
+        expect(linked_list.last.element).to eq(@head_node)
       end
 
       it "keeps first node as head_node" do
         linked_list.add(middle_node)
-        expect(linked_list.first).to eq(@head_node)
+        expect(linked_list.first.element).to eq(@head_node)
       end
 
       it "updates last node" do
         linked_list.add(middle_node)
-        expect(linked_list.last).to eq(middle_node)
+        expect(linked_list.last.element).to eq(middle_node)
       end
 
       it "continues to update last node" do
         linked_list.add(middle_node)
         linked_list.add(last_node)
-        expect(linked_list.last).to eq(last_node)
+        expect(linked_list.last.element).to eq(last_node)
       end
 
     end
@@ -144,7 +138,7 @@ describe LinkedList do
 
     it "updates first node when 0 index is updated" do
       linked_list.insert(0,@inserted_node)
-      expect(linked_list.first).to eq(@inserted_node)
+      expect(linked_list.first.element).to eq(@inserted_node)
     end
 
     it "can insert an element at end of list" do
@@ -155,7 +149,7 @@ describe LinkedList do
     it "shifts last node when inserting at last index" do
       last_position = linked_list.length - 1
       linked_list.insert(last_position,@inserted_node)
-      expect(linked_list.last).to eq(@last_node)
+      expect(linked_list.last.element).to eq(@last_node)
     end
 
     it "increases size of list" do
