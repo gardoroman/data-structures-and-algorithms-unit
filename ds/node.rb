@@ -7,8 +7,6 @@ class Node
     @next_node = next_node
   end
 
-  
-
   def to_s
     element
   end
