@@ -8,9 +8,8 @@ class Queue
   end
 
   def enqueue(element)
-    node = Node.new(element)
-    @linked_list.add(node)
-    node.element
+    @linked_list.add(element)
+    element
   end
 
   #enqueue not working if another element is added

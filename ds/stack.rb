@@ -10,8 +10,7 @@ class Stack
   end
 
   def push(element)
-    node = Node.new(element)
-    linked_list.insert(0,node)
+    linked_list.insert(0,element)
     element
   end
 
