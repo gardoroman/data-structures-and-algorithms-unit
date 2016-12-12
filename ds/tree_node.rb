@@ -10,7 +10,7 @@ class TreeNode
   end
 
   def add_child(child)
-    @children.add(child)
+    @children.add(TreeNode.new(child))
   end
 
   def to_s
