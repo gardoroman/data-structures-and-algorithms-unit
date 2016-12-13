@@ -12,10 +12,6 @@ class TreeList
     @element_list = ArrayList.new
   end
 
-  # elements must be ordered
-  # each level can be at most a length of 2
-  # determine whether it is < or >
-  # determine where it belongs in the list
   def add(element, comparison_node=nil)
     comparison_node = @root unless comparison_node
     position = compare(element, comparison_node)
@@ -29,17 +25,6 @@ class TreeList
     end
     element
   end
-
-  #the problem with list is that it
-
-  # node = @root unless node
-  # def each(node)
-  #   count = 0
-  #   while count < 2 do
-  #     yield (node.children.get(count))
-  #     count +=1
-  #   end
-  # end
 
   def view
     list
@@ -66,19 +51,11 @@ class TreeList
 
   def list(node=nil)
     node = @root unless node
-    # puts node.value
-    # each(node) do |element|
-    #   if element
-    #     list(element)
-    #     @element_list.add(element)
-    #   end
-    # end
     left_child = node.children.get(0)
     right_child = node.children.get(1)
     list(left_child) if left_child
     @element_list.add(node)
     list(right_child) if right_child
-    # @element_list
   end
 
   def depth_first_search(value, node)
