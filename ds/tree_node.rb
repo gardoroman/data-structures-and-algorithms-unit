@@ -4,9 +4,9 @@ class TreeNode
 
   attr_accessor :value, :children
 
-  def initialize(value)
+  def initialize(value,size=0)
     @value = value
-    @children = ArrayList.new
+    @children = ArrayList.new(size)
   end
 
   def add_child(child)

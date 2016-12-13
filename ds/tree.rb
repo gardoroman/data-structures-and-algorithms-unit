@@ -3,8 +3,8 @@ require_relative 'tree_node'
 class Tree
 
   attr_accessor :node
-  def initialize(node)
-    @node = TreeNode.new(node)
+  def initialize(node,size=0)
+    @node = TreeNode.new(node,size)
   end
 
   def search(value, start_node=nil)

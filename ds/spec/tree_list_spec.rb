@@ -15,7 +15,7 @@ describe TreeList do
 
   describe "#add" do
     it "adds an element to TreeList" do
-      
+      expect(tree_list.add("a").value).to eq("a")
     end
   end
 end
