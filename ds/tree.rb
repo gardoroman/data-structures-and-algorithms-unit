@@ -9,7 +9,7 @@ class Tree
 
   def search(value, start_node=nil)
     if start_node && start_node.value == value
-      return start_node
+      return true
     elsif !start_node
       start_node = node unless start_node
     end

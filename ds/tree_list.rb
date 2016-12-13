@@ -2,12 +2,14 @@ require_relative 'tree'
 
 class TreeList
 
-attr_accessor :length, :index, :root
+  attr_accessor :length, :index, :root, :element_list
 
   def initialize(node)
     @tree = Tree.new(node,2)
     @root = @tree.node
     @length = 1
+    @index = 0
+    @element_list = ArrayList.new
   end
 
   # elements must be ordered
@@ -28,6 +30,30 @@ attr_accessor :length, :index, :root
     element
   end
 
+  #the problem with list is that it
+
+  # node = @root unless node
+  # def each(node)
+  #   count = 0
+  #   while count < 2 do
+  #     yield (node.children.get(count))
+  #     count +=1
+  #   end
+  # end
+
+  def view
+    list
+    @element_list
+  end
+
+  def index_of(value)
+    depth_first_search(value, @root)
+  end
+
+  private
+
+  attr_accessor :tree
+
   def compare(element, other)
     if element < other.value
       return 0
@@ -38,17 +64,40 @@ attr_accessor :length, :index, :root
     end
   end
 
-  private
-
-  attr_accessor :tree
-
-
-  # start at the root if
-  def order_elements(start_node, element)
-    if @length < 4
-
-    end
-
+  def list(node=nil)
+    node = @root unless node
+    # puts node.value
+    # each(node) do |element|
+    #   if element
+    #     list(element)
+    #     @element_list.add(element)
+    #   end
+    # end
+    left_child = node.children.get(0)
+    right_child = node.children.get(1)
+    list(left_child) if left_child
+    @element_list.add(node)
+    list(right_child) if right_child
+    # @element_list
   end
+
+  def depth_first_search(value, node)
+    return nil unless node
+    if node.value == value
+      puts "does it ever?"
+      return index
+    end
+    @index += 1
+    puts "node class is #{node.class}"
+    left_child = node.children.get(0)
+    right_child = node.children.get(1)
+    puts "value is #{value} node val is #{right_child}"
+    result = depth_first_search(value, left_child)
+    return result if result
+    result = depth_first_search(value, right_child)
+    return result if result
+    nil
+  end
+
 
 end

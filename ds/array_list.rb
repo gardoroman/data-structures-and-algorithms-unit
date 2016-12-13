@@ -69,10 +69,10 @@ class ArrayList
   end
 
   def each
-    index = 0
-    while index < self.length
-      yield (get(index))
-      index += 1
+    each_index = 0
+    while each_index < self.length
+      yield (get(each_index))
+      each_index += 1
     end
   end
 

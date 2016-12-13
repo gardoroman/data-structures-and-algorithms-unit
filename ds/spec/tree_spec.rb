@@ -28,7 +28,7 @@ describe Tree do
 
   describe "#search" do
     it "can search the tree for a specific node value" do
-      expect(tree.search("b").value).to eq("b")
+      expect(tree.search("b")).to be true
     end
 
     it "will return nil if not found" do
