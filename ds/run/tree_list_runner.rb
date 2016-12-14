@@ -11,6 +11,9 @@ tl.add("a")
 
 tl.add("z")
 tl.add("e")
+tl.add("h")
+tl.add("l")
+# tl.add("i")
 
 # puts "******\n\n#{tl.root.children}"
 # puts "******\n\n#{tl.root.children.get(0)}"
@@ -19,5 +22,5 @@ tl.add("e")
 
 puts tl.view
 
-p tl.index_of("a")
-p tl.ordered_index("x")
+p tl.index_of("e")
+p tl.ordered_index("h")
