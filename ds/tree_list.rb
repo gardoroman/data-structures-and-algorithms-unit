@@ -18,7 +18,7 @@ class TreeList
     if !comparison_node.children.get(position)
       added_element = TreeNode.new(element, 2)
       @length += 1
-      puts "setting #{element} at pos #{position} in return #{comparison_node}"
+      # puts "setting #{element} at pos #{position} in return #{comparison_node}"
       return comparison_node.children.set(position, added_element)
     else
       add(element, comparison_node.children.get(position))
@@ -31,8 +31,16 @@ class TreeList
     @element_list
   end
 
+  # returns depth first index
   def index_of(value)
+    @index = 0
     depth_first_search(value, @root)
+  end
+
+  # returns ordinal index
+  def ordered_index(value)
+    @index = 0
+    ordered_search(value, @root)
   end
 
   private
@@ -61,20 +69,36 @@ class TreeList
   def depth_first_search(value, node)
     return nil unless node
     if node.value == value
-      puts "does it ever?"
       return index
     end
     @index += 1
-    puts "node class is #{node.class}"
     left_child = node.children.get(0)
     right_child = node.children.get(1)
-    puts "value is #{value} node val is #{right_child}"
     result = depth_first_search(value, left_child)
     return result if result
     result = depth_first_search(value, right_child)
     return result if result
-    nil
   end
 
+  def ordered_search(value, node)
+    return nil unless node
+
+    left_child = node.children.get(0)
+    if left_child
+      result = ordered_search(value, left_child)
+      return result if result
+    end
+
+    return index if node.value == value
+    @index += 1
+
+    right_child = node.children.get(1)
+    if right_child
+      result = ordered_search(value, right_child)
+      return result if result
+    end
+
+    nil
+  end
 
 end
