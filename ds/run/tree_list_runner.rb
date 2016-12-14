@@ -19,4 +19,5 @@ tl.add("e")
 
 puts tl.view
 
-puts tl.index_of("m")
+p tl.index_of("a")
+p tl.ordered_index("x")
