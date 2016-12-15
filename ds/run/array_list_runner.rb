@@ -16,3 +16,19 @@ puts arr.delete_at(3)
 # puts arr.slice(0,1)
 
 puts arr
+
+arr.each_with_index do |item, index|
+  puts "item is #{item} index is #{index}"
+end
+#
+# aa = ArrayList.new
+# ab = ArrayList.new
+#
+# aa.add(1)
+# aa.add(2)
+# ab.add(3)
+# ab.add(4)
+# puts "array 1 #{aa}"
+# puts "array 2 #{ab}"
+# ab << aa
+# puts ab

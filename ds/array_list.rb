@@ -71,7 +71,15 @@ class ArrayList
   def each
     each_index = 0
     while each_index < self.length
-      yield (get(each_index))
+      yield get(each_index)
+      each_index += 1
+    end
+  end
+
+  def each_with_index
+    each_index = 0
+    while each_index < self.length
+      yield get(each_index), each_index
       each_index += 1
     end
   end
@@ -86,13 +94,20 @@ class ArrayList
       start = pos + 1
       tail_array = slice(start, self.length - start)
       @array_list = slice(0,pos)
-      tail_array.each do |item|
-        add(item)
-      end
+      self << tail_array
+      # tail_array.each do |item|
+      #   add(item)
+      # end
     end
 
   end
-  
+
+  def <<(other_array)
+    other_array.each do |item|
+      add(item)
+    end
+  end
+
   def slice(start, num)
     temp_list = ArrayList.new(num)
     num.times do |index|
