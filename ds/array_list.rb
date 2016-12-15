@@ -76,18 +76,25 @@ class ArrayList
     end
   end
 
-  private
+  def delete_at(pos)
+    return OutOfBoundsException if pos < 0 || pos >= self.length
+    if pos == self.length - 1
+      @array_list = slice(0,pos)
+    elsif pos == 0
+      @array_list = slice(pos + 1, self.length - 1)
+    else
+      start = pos + 1
+      tail_array = slice(start, self.length - start)
+      @array_list = slice(0,pos)
+      tail_array.each do |item|
+        add(item)
+      end
+    end
 
-  # returns true if index is greater than Zero
-  # or index is within the size limit of the array
-  def valid_index?(index)
-    index >= 0 && index < self.length
   end
-
-    # copies "num" elements of an ArrayList
-  # at index indicated by "start"
+  
   def slice(start, num)
-    temp_list = FixedArray.new(num)
+    temp_list = ArrayList.new(num)
     num.times do |index|
       # puts "index is #{index}"
       temp_list.set(index, @array_list.get(start))
@@ -96,5 +103,12 @@ class ArrayList
     temp_list
   end
 
+  private
+
+  # returns true if index is greater than Zero
+  # or index is within the size limit of the array
+  def valid_index?(index)
+    index >= 0 && index < self.length
+  end
 
 end
