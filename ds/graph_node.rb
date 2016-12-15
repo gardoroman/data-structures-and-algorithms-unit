@@ -15,7 +15,6 @@ class GraphNode
 
   def exists?(value)
     @nodes.each do |node|
-      puts "here"
       return true if node == value
     end
   end
